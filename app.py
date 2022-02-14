@@ -18,6 +18,7 @@ def main():
          1. TCP
          2. UDP
          3. ICMP 
+         Any other number to listen to all
     '''
     choice = eval(input(dsp))
     ''' 
@@ -45,13 +46,13 @@ def main():
             # TCP is the most common
             # UDP if domain server is being used
             # now look at the protocol, and the filters and choose the packet type
-            if proto == 1 and choice == 3:
+            if proto == 1 and (choice == 3 or choice not in [1,2,3]):
                 icmp = ICMPSeg()
                 icmp.display_icmp(data)
-            elif proto == 6 and choice == 1:
+            elif proto == 6 and (choice == 1 or choice not in [1,2,3]):
                 tcp = TCPSeg()
                 tcp.display_tcp(data)
-            elif proto == 17 and choice == 2:
+            elif proto == 17 and (choice == 2 or choice not in [1,2,3]):
                 udp = UDPSeg()
                 udp.display_udp(data)
             else:
